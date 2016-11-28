@@ -163,7 +163,18 @@ $(document).ready(function(){
     $.post('/movies/api/movies', newMovie).done(function(jsonMovie){
       var movieHTML = createMovieHTML(jsonMovie)
       $('#not-watched').append(movieHTML)
+      $.ajax({
+        type: 'PATCH',
+        url: '/user/movies',
+        data: {
+          movie: jsonMovie._id
+        }
+      }).done(function(user){
+        console.log("movie added to user")
+        console.log(user.movies)
+        console.log(user.googleId)
       })
+    })
   })
 
 //end document ready

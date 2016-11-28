@@ -1,5 +1,6 @@
 var router = require('express').Router()
 var passport = require('passport')
+var usersCtrl = require('../controllers/users')
 
 router.get('/', function(req, res) {
   console.log('hi there')
@@ -18,6 +19,8 @@ router.get('/oauth2callback', passport.authenticate(
     failureRedirect : '/'
   }
 ));
+
+router.patch('/user/movies', usersCtrl.addMovie)
 
 router.get('/logout', function(req, res){
   req.logout();
