@@ -15,7 +15,7 @@ $(document).ready(function(){
 
   function createMovieHTML(jsonMovie){
     console.log(jsonMovie)
-    return $(`<li id="movie-${jsonMovie._id}">Title: ${jsonMovie.title}<br>Genre: ${jsonMovie.genre}<br><img src=${jsonMovie.imageSrc}><br><input style="color:red" type="checkbox" id=${jsonMovie._id} ${jsonMovie.watched ? "checked" : ""}/><label for=${jsonMovie._id}>Watched</label><br><button class="remove-item">Delete Movie from the list</span></button></li><br>`)
+    return $(`<li id="movie-${jsonMovie._id}">Title: ${jsonMovie.title}<br>Genre: ${jsonMovie.genre}<br><img src=${jsonMovie.imageSrc}><br><input style="color:red" type="checkbox" id=${jsonMovie._id} ${jsonMovie.watched ? "checked" : ""}/><label for=${jsonMovie._id}>Watched</label><br><button class="remove-item btn btn-default">Delete Movie from list</span></button></li><br>`)
   }
 
   $.ajax({
@@ -145,7 +145,7 @@ $(document).ready(function(){
       $(`#${data.id}div`).append(`<p class='overview'>${data.overview}</p><p class='overview'>Rated: ${data.rating} | Released Date: ${data.release_date}</p><button class='addMovie' onclick="Materialize.toast('Added Movie to Not Watched List', 4000)">Add Movie</button>`)
       var subSources = data.subscription_web_sources
       subSources.forEach(function(source){
-        $(`#${data.id}div`).append(`<br class='sources'><a class='sources' href='${source.link}'>${source.display_name}</a>`)
+        $(`#${data.id}div`).append(`<br class='sources'><a class='sources' href='${source.link}' target='_blank'>${source.display_name}</a>`)
       })
       var purchaseSources = data.purchase_web_sources
       purchaseSources.forEach(function(source){
